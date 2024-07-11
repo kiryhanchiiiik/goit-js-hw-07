@@ -9,15 +9,18 @@ const createButton = document.querySelector("[data-create]");
 const destroyButton = document.querySelector("[data-destroy]");
 const box = document.querySelector("#boxes");
 
+destroyBoxes();
+
+let boxesAdd = "";
+
 function createBoxes(amount) {
-  destroyBoxes();
   for (let i = 0; i < amount; i++) {
-    const div = document.createElement("div");
-    div.style.width = `${30 + i * 10}px`;
-    div.style.height = `${30 + i * 10}px`;
-    div.style.backgroundColor = getRandomHexColor();
-    box.appendChild(div);
+    const width = 30 * i + 10;
+    const height = 30 * i + 10;
+    const backgroundColor = getRandomHexColor();
+    boxesAdd += `<div style="width: ${width}px; height: ${height}px; background-color: ${backgroundColor};"></div>`;
   }
+  box.insertAdjacentHTML("beforeend", boxesAdd);
 }
 
 function destroyBoxes() {
